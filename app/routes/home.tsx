@@ -21,7 +21,8 @@ export default function Home() {
       useEffect(() => {
         if (!auth.isAuthenticated) navigate('/auth?next=/');
       }, [auth.isAuthenticated]);
-  return <main className="bg-[url('/images/bg-main.svg')] bg-cover">
+  return(
+  <main className="bg-[url('/images/bg-main.svg')] bg-cover">
     <Navbar />
     {/* {window.puter.} */}
       <section className="main-section">
@@ -39,4 +40,4 @@ export default function Home() {
       )}
       </section>
   </main>
-}
+)}
