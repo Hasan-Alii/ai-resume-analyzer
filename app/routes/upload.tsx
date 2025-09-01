@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import { useNavigate } from "react-router";
 import FileUploader from "~/components/FileUploader";
 import Navbar from "~/components/Navbar";
@@ -13,6 +13,10 @@ const Upload = () => {
   const [isProcessing, setIsProcessing] = useState(false);
   const [statusText, setStatusText] = useState("No file uploaded");
   const [file, setFile] = useState<File | null>(null);
+
+  useEffect(() => {
+    if (!auth.isAuthenticated) navigate("/auth?next=/upload");
+  }, [auth.isAuthenticated]);
 
   const handleAnalyze = async ({
     companyName,
