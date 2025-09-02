@@ -48,6 +48,7 @@ const Resume = () => {
 
   return (
     <main className="!pt-0">
+      {/* Navigation Bar */}
       <nav className="resume-nav">
         <Link to="/" className="back-button">
           <img
@@ -60,8 +61,11 @@ const Resume = () => {
           </span>
         </Link>
       </nav>
+
+      {/* page content: scores, feedback and resume image */}
       <div className="flex flex-row w-full max-lg:flex-col-reverse">
-        <section className="bg-[url('/images/b-small.svg') bg-cover h-[100vh]] sticky top-0 items-center justify-center">
+        {/* resume image and resume pdf link */}
+        <section className="feedback-section bg-[url('/images/b-small.svg') bg-cover h-[100vh]] sticky top-0 items-center justify-center">
           {imageUrl && resumeUrl && (
             <div className="feedback-section animate-in fade-in duration-1000 gradient-border max-sm:m-0 h-[90%] max-wxl:h-fit w-fit">
               <a href={resumeUrl} target="_blank" rel="noopener noreferrer">
@@ -75,6 +79,7 @@ const Resume = () => {
             </div>
           )}
         </section>
+        {/* scores & feedback section */}
         <section className="feedback-section">
           <h2 className="text-4xl !text-black font-bold">Resume Review</h2>
           {feedback ? (
@@ -85,7 +90,7 @@ const Resume = () => {
                 score={feedback.ATS.score || 0}
                 suggestions={feedback.ATS.tips || []}
               />
-              <Details feedback={ feedback } />
+              <Details feedback={feedback} />
             </div>
           ) : (
             <img src="/public/images/resume-scan-2.gif" className="w-full" />
