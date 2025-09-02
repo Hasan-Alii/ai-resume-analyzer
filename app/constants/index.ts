@@ -1,3 +1,6 @@
+
+
+// Dummy resumes data
 export const resumes: Resume[] = [
   {
     id: "1",
@@ -91,6 +94,10 @@ export const resumes: Resume[] = [
   },
 ];
 
+/*
+  the format/interface of the AI Response recieved after uploading 
+  job-title, job-description and resume for analysis with AI
+*/
 export const AIResponseFormat = `
       interface Feedback {
       overallScore: number; //max 100
@@ -135,6 +142,14 @@ export const AIResponseFormat = `
       };
     }`;
 
+
+/**
+ * accepts info about the job to deliver it 
+ * to AI for analysis with built-in prompt
+ * @param jobTitle accepts jobTitle string 
+ * @param jobDescription accepts jobDescription string 
+ * @returns 
+ */
 export const prepareInstructions = ({
   jobTitle,
   jobDescription,
