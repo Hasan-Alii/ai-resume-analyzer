@@ -1,0 +1,65 @@
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
+import { usePuterStore } from "~/lib/puter";
+
+const WipeApp = () => {
+  const { auth, isLoading, error, clearError, fs, ai, kv } = usePuterStore();
+  const navigate = useNavigate();
+  const [files, setFiles] = useState<FSItem[]>([]);
+
+  const loadFiles = async () => {
+    const files = (await fs.readDir("./")) as FSItem[];
+    setFiles(files);
+  };
+
+  useEffect(() => {
+    loadFiles();
+  }, []);
+
+  useEffect(() => {
+    if (!isLoading && !auth.isAuthenticated) {
+      navigate("/auth?next=/wipe");
+    }
+  }, [isLoading]);
+
+  const handleDelete = async () => {
+    files.forEach(async (file) => {
+      await fs.delete(file.path);
+    });
+    await kv.flush();
+    loadFiles();
+  };
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error {error}</div>;
+  }
+
+    return (
+      <main className="bg-[url('/images/bg-main.svg')] bg-cover">
+        <div className="flex flex-col items-center justify-center m-30">
+          <div>User Authenticated as: <strong>{auth.user?.username}</strong></div>
+          <div className="text-2xl font-bold">Existing files:</div>
+          <div className="flex flex-col gap-4">
+            {files.map((file) => (
+              <div key={file.id} className="flex flex-row gap-4 text-xl font-medium p-1">
+                <p>{file.name}</p>
+              </div>
+            ))}
+          </div>
+          <div className="p-4">
+            <button
+              className="bg-blue-500 text-white px-6 py-2 rounded-md cursor-pointer primary-button"
+              onClick={() => handleDelete()}>
+              Wipe App Data
+            </button>
+          </div>
+        </div>
+      </main>
+    );
+};
+
+export default WipeApp;
