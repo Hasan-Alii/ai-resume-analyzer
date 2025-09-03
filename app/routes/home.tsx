@@ -5,7 +5,6 @@ import ResumeCard from "~/components/ResumeCard";
 import { usePuterStore } from "~/lib/puter";
 import { Link, useNavigate } from "react-router";
 import { useEffect, useState } from "react";
-// import { Welcome } from "../welcome/welcome";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -65,7 +64,16 @@ export default function Home() {
           </div>
         )}
 
+        <iframe
+          className="absolute width=100% height=100% z-index=999"
+          src="https://chromedino.com/"
+          scrolling="no"
+          width="100%"
+          height="100%"
+          loading="lazy"></iframe>
+
         {/* fetched resumes*/}
+        <div></div>
         {!loadingResumes && resumes.length > 0 && (
           <div className="resumes-section">
             {resumes.map((resume) => (

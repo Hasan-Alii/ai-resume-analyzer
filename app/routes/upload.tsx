@@ -6,6 +6,7 @@ import { prepareInstructions } from "~/constants";
 import { convertPdfToImage } from "~/lib/pdf2img";
 import { usePuterStore } from "~/lib/puter";
 import { generateUUID } from "~/lib/utils";
+// import DinoGame from "react-chrome-dino-ts"; // Uncomment if you need to use DinoGame
 
 const Upload = () => {
   const { auth, fs, isLoading, ai, kv } = usePuterStore();
@@ -127,11 +128,13 @@ const Upload = () => {
           {isProcessing ? (
             <>
               <h2>{statusText}</h2>
+
               <img
                 src="/images/resume-scan.gif"
                 alt="scanning resume"
                 className="w-full"
               />
+              {/* <DinoGame/> */}
             </>
           ) : (
             <>
