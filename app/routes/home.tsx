@@ -64,13 +64,13 @@ export default function Home() {
           </div>
         )}
 
-        <iframe
+        {/* <iframe
           className="absolute width=100% height=100% z-index=999"
           src="https://chromedino.com/"
           scrolling="no"
           width="100%"
           height="100%"
-          loading="lazy"></iframe>
+          loading="lazy"></iframe> */}
 
         {/* fetched resumes*/}
         <div></div>

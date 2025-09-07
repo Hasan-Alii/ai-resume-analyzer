@@ -128,7 +128,6 @@ const Upload = () => {
           {isProcessing ? (
             <>
               <h2>{statusText}</h2>
-
               <img
                 src="/images/resume-scan.gif"
                 alt="scanning resume"
